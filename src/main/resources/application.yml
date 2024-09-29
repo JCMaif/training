@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: usertraining
+  datasource:
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/training-user?currentSchema=public
+    username: postgres
+    password: postgres
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+    defer-datasource-initialization: true
+  sql:
+    init:
+      data-locations: "classpath*:data.sql"
+      mode: always
+  mail:
+    host: "sandbox.smtp.mailtrap.io"
+    port: 2525
+    username: "e5344c02ebe00e"
+    password: "0d4eebb8f4374f"
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+server:
+  servlet:
+    context-path: /api
