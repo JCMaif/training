@@ -1,28 +1,13 @@
-name: CI/CD pipeline
 
 on:
   push:
-    branches:
-      - main
-      
 
 jobs:
   get-version:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
-      - name: Get Version from External Workflow
-        uses: shiipou/github-actions/.github/workflows/get-version.yml@main # Import d'un dépôt tiers
-        with:
-          release-branch: '^(main)$'
-      
- # run-tests:
- #   runs-on: ubuntu-latest
- #   - name:
- #     uses:
-      
+    uses: shiipou/github-actions/.github/workflows/get-version.yml@main
+    with:
+      release-branches: '^(main)$'
+  
   build:
     name: Spring build
     runs-on: ubuntu-latest
@@ -52,13 +37,3 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           path: build/libs/
-      
-#  realease:
-#    - name:
- #     uses:
-    
-#  publish:
-#    - name:
- #     uses:
-    
-  
