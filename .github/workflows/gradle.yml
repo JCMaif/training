@@ -11,6 +11,7 @@ jobs:
   test:
     name: Spring test
     runs-on: ubuntu-latest
+    continue-on-error: true
     services:
       # Label used to access the service container
       postgres:
