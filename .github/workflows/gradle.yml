@@ -24,31 +24,34 @@ jobs:
  #     uses:
       
   build:
-    name: Spring Build
+    name: Spring build
     runs-on: ubuntu-latest
+    if: ${{ needs.get-version.outputs.will-release == 'true' }}
     needs: 
       - get-version
-    permissions:
-      contents: read
-      packages: write
     steps:
-      - name: Print Version
-        run: echo "${{needs.get-version.outputs.version}}"
-        
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
-      - name: Set up JDK 17
+      # - name: Print version
+      #   run : |
+      #     echo "${{ needs.get-version.outputs.version }}"
+      #     echo "${{ needs.get-version.outputs.changelogs }}"
+      #     echo "${{ needs.get-version.outputs.is-prerelease }}"
+      #     echo "${{ needs.get-version.outputs.will-release }}"
+      - name: setup java
         uses: actions/setup-java@v4
         with:
-          java-version: '17'
           distribution: 'temurin'
-
+          java-version: 17
       - name: Setup Gradle
-        uses: gradle/gradle-build-action@v2
-
+        uses: gradle/actions/setup-gradle@v4
+      - name: Checkout
+        uses: actions/checkout@v4
       - name: Build with Gradle
-        run: ./gradlew build
+        env:
+          VERSION: "${{ needs.get-version.outputs.version }}"
+        run: ./gradlew bootjar
+      - uses: actions/upload-artifact@v4
+        with:
+          path: build/libs/
       
 #  realease:
 #    - name:
