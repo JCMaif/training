@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Map;
+
 @Slf4j
 @AllArgsConstructor
 @RestController
@@ -22,5 +24,8 @@ public class UtilisateurController {
     public void inscription(@RequestBody Utilisateur utilisateur) throws MessagingException {
         log.info("Inscription");
         this.utilisateurService.inscription(utilisateur);
+    }  @PostMapping(path = "activation")
+    public void activation(@RequestBody Map<String, String> activation) {
+        this.utilisateurService.inscription(activation();
     }
 }

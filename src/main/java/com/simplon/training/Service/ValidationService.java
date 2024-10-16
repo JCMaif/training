@@ -3,13 +3,11 @@ package com.simplon.training.Service;
 import com.simplon.training.model.Utilisateur;
 import com.simplon.training.model.Validation;
 import com.simplon.training.repository.ValidationRepository;
-import jakarta.mail.MessagingException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
-import java.time.temporal.TemporalUnit;
 import java.util.Random;
 
 @Service
@@ -17,7 +15,8 @@ import java.util.Random;
 public class ValidationService {
     private ValidationRepository validationRepository;
     private NotificationService notificationService;
-    public void enregitrer(Utilisateur utilisateur) throws MessagingException{
+    private NotificationServiceDEV notificationServiceDEV;
+    public void enregitrer(Utilisateur utilisateur) {
         Validation validation = new Validation();
         validation.setUtilisateur(utilisateur);
         Instant creation = Instant.now();
@@ -35,7 +34,8 @@ public class ValidationService {
         validation.setCode(code);
 
         this.validationRepository.save(validation);
-        this.notificationService.envoyer(validation);
+     //   this.notificationService.envoyer(validation);
+        this.notificationServiceDEV.envoyer(validation);
 
 
     }

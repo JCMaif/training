@@ -16,16 +16,11 @@ spring:
       data-locations: "classpath*:data.sql"
       mode: always
   mail:
-    host: "sandbox.smtp.mailtrap.io"
-    port: 2525
-    username: "e5344c02ebe00e"
-    password: "0d4eebb8f4374f"
     properties:
-      mail:
-        smtp:
-          auth: true
-          starttls:
-            enable: true
-server:
-  servlet:
-    context-path: /api
+      mail.smtp.ssl.trust: "*"
+mailtrap:
+  api-url: https://sandbox.api.mailtrap.io/api/send/2192121
+  api-token: e5bfc9d1c956f8abac925b4bbf2a0103
+  from-email: no-reply@expediteur.com
+
+
