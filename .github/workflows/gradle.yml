@@ -2,6 +2,9 @@
 on:
   push:
 
+permissions:
+  contents: write
+
 jobs:
   get-version:
     uses: shiipou/github-actions/.github/workflows/get-version.yml@main
@@ -89,5 +92,6 @@ jobs:
           VERSION: "${{ needs.get-version.outputs.version }}"
           REPO: "${{ github.repository }}"
           COMMIT: "${{ github.sha }}"
+          GH_TOKEN: "${{ github.token }}"
         run: |
           gh release create --repo $REPO --target $COMMIT $VERSION build/*
