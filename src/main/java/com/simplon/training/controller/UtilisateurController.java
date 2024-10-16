@@ -24,8 +24,10 @@ public class UtilisateurController {
     public void inscription(@RequestBody Utilisateur utilisateur) throws MessagingException {
         log.info("Inscription");
         this.utilisateurService.inscription(utilisateur);
-    }  @PostMapping(path = "activation")
-    public void activation(@RequestBody Map<String, String> activation) {
-        this.utilisateurService.inscription(activation();
-    }
+    }  
+    
+    // @PostMapping(path = "activation")
+    // public void activation(@RequestBody Map<String, String> activation) {
+    //     this.utilisateurService.inscription(activation());
+    // }
 }
